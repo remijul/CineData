@@ -1,0 +1,21 @@
+# python3 -m venv venv
+# venv\Scripts\Activate
+# pip install -r requirements.txt
+# python -m ipykernel install --user --name=cinedata --display-name "Python (cinedata)"
+
+# --- Extraction (J1-J3) ---
+requests
+python-dotenv
+beautifulsoup4
+
+# --- Exploration / notebook (proche de vos habitudes Data Analyst) ---
+pandas
+jupyterlab
+
+
+# --- Base de données (J3-J4) ---
+sqlalchemy
+
+# --- API (J4-J5) ---
+fastapi
+uvicorn
