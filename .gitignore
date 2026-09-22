@@ -12,13 +12,12 @@ data/raw/ml-latest-small/
 
 # Au fur et à mesure du projet
 # src/scraping_wikipedia.py
-src/
+src/*.py
 notebooks/scraping_demo.ipynb
 
 # Documentation
 
 docs/99_*.md
 docs/*.py
-#docs/99_Corrige_Formateur_Casting_Erreurs.py
 docs/00_Infos_API_TMDB.md
 docs/00_Guide_Etudiant_04_Scraping.md
