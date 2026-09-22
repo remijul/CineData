@@ -7,6 +7,8 @@ Collecte, agrégation, stockage et mise à disposition de données cinéma, à p
 
 ---
 
+![Pulp Fiction](/data/img/pulp_fiction.png)
+
 ## Objectif
 
 Construire un jeu de données cinéma unifié à partir de trois sources différentes, et le rendre accessible via une API REST — dans une logique de préparation à un futur usage IA (recommandation).
