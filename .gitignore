@@ -4,6 +4,10 @@ __pycache__/
 venv/
 .venv/
 
+# API
+#sql/
+api/
+
 # Les données brutes (extractiosn de l'API TMDB, scraping Wikipedia, etc.)
 data/raw/
 #data/raw/*.csv
@@ -15,10 +19,12 @@ data/raw/ml-latest-small/
 docs/supports_formateur/
 docs/*.py
 docs/00_Infos_API_TMDB.md
+docs/00_Guide_Etudiant_06_FastAPI.md
 
 # Notebooks
 #notebooks/scraping_demo.ipynb
-#notebooks/modelisation_demo.ipynb
+notebooks/demo_fastapi.ipynb
+notebooks/demo_recommandation.ipynb
 
 # Au fur et à mesure du projet
 # src/scraping_wikipedia.py

@@ -39,3 +39,7 @@ fichiers_sortie:
 database:
   chemin: data/cinedata.db
   schema: sql/schema.sql
+
+recommandation:
+  sql: recommandation_donnees.sql
+  top_n: 5

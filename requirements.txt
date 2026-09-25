@@ -12,7 +12,7 @@ pyyaml
 # --- Exploration / notebook (proche de vos habitudes Data Analyst) ---
 pandas
 jupyterlab
-
+scikit-learn
 
 # --- Base de données (J3-J4) ---
 sqlalchemy
@@ -20,3 +20,4 @@ sqlalchemy
 # --- API (J4-J5) ---
 fastapi
 uvicorn
+httpx
