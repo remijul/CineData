@@ -100,3 +100,16 @@ class FilmClassementBudget(BaseModel):
     id: int
     title: str
     budget: int
+
+
+# --- Recommandation ---
+ 
+class FilmRecommande(BaseModel):
+    id: int
+    title: str
+    genres: list[str] = []
+    runtime: Optional[int] = None
+    release_date: Optional[str] = None
+    actors: list[str] = []
+    directors: list[str] = []
+    score_similarite: float

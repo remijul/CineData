@@ -14,12 +14,13 @@ Documentation Swagger : http://127.0.0.1:8000/docs
 
 from fastapi import FastAPI
 
-from routers import system, movies, rankings
+from routers import system, movies, rankings, recommendation
 
 TAGS_METADATA = [
     {"name": "Système", "description": "État de l'API et informations générales."},
     {"name": "Films", "description": "Liste et détail des films du catalogue."},
     {"name": "Classements", "description": "Top 10 acteurs, réalisateurs, revenus et budgets."},
+    {"name": "Recommandation", "description": "Films similaires à un film donné (similarité de contenu)."},
 ]
 
 app = FastAPI(
@@ -32,3 +33,4 @@ app = FastAPI(
 app.include_router(system.router)
 app.include_router(movies.router)
 app.include_router(rankings.router)
+app.include_router(recommendation.router)

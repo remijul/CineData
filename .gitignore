@@ -19,12 +19,14 @@ data/raw/ml-latest-small/
 docs/supports_formateur/
 docs/*.py
 docs/00_Infos_API_TMDB.md
-docs/00_Guide_Etudiant_06_FastAPI.md
+#docs/00_Guide_Etudiant_06_FastAPI.md
+#docs/00_Guide_Etudiant_07_Recommandation.md
 
 # Notebooks
 #notebooks/scraping_demo.ipynb
 notebooks/demo_fastapi.ipynb
 notebooks/demo_recommandation.ipynb
+ntebooks/demo_enhanced_recommendation.ipynb
 
 # Au fur et à mesure du projet
 # src/scraping_wikipedia.py
@@ -32,7 +34,7 @@ notebooks/demo_recommandation.ipynb
 
 # Base de données
 #sql/
-*.db
+#*.db
 
 
 

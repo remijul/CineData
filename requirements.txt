@@ -12,12 +12,17 @@ pyyaml
 # --- Exploration / notebook (proche de vos habitudes Data Analyst) ---
 pandas
 jupyterlab
-scikit-learn
 
-# --- Base de données (J3-J4) ---
+
+# --- Base de données (J4-J5) ---
 sqlalchemy
 
-# --- API (J4-J5) ---
+# --- API (J5-J6) ---
 fastapi
 uvicorn
 httpx
+
+# --- Système de recommandation (J6-J7) ---
+scikit-learn
+joblib
+mistralai

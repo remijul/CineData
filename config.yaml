@@ -43,3 +43,14 @@ database:
 recommandation:
   sql: recommandation_donnees.sql
   top_n: 5
+
+recommandation:
+  sql: recommandation_donnees.sql
+  top_n: 5
+  artefact: data/models/recommandation.joblib
+
+llm:
+  provider: mistral
+  modele: mistral-small-latest
+  temperature: 0.7
+  max_tokens: 400

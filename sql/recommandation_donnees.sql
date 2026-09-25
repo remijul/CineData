@@ -1,10 +1,12 @@
--- Une ligne par film, avec genres/tags/casting (acteurs + réalisateur)
--- concaténés (séparateur '|' pour pouvoir re-découper proprement côté Python,
--- chaque entité pouvant elle-même contenir des espaces, ex. "Science Fiction").
+-- Une ligne par film : champs de base + genres/tags/casting concaténés
+-- (séparateur '|') pour construire le "soup" TF-IDF, et acteurs/réalisateurs
+-- séparés pour l'enrichissement du résultat de l'API.
 SELECT
     films.id,
     films.title,
     films.tagline,
+    films.runtime,
+    films.release_date,
     (
         SELECT GROUP_CONCAT(genres.nom, '|')
         FROM film_genre
@@ -21,5 +23,17 @@ SELECT
         FROM film_personne
         JOIN personnes ON personnes.id = film_personne.personne_id
         WHERE film_personne.film_id = films.id
-    ) AS casting_texte
+    ) AS casting_texte,
+    (
+        SELECT GROUP_CONCAT(personnes.name, '|')
+        FROM film_personne
+        JOIN personnes ON personnes.id = film_personne.personne_id
+        WHERE film_personne.film_id = films.id AND film_personne.role = 'Acteur'
+    ) AS actors_texte,
+    (
+        SELECT GROUP_CONCAT(personnes.name, '|')
+        FROM film_personne
+        JOIN personnes ON personnes.id = film_personne.personne_id
+        WHERE film_personne.film_id = films.id AND film_personne.role = 'Réalisateur'
+    ) AS directors_texte
 FROM films;
