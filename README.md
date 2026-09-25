@@ -16,14 +16,14 @@ Construire un jeu de données cinéma unifié à partir de trois sources différ
 ## Sources de données
 
 | Source | Type | Contenu |
-|---|---|---|
+| --- | --- | --- |
 | [API TMDB](https://developer.themoviedb.org/docs) | API REST | Films populaires, détails, genres, casting |
 | [MovieLens (ml-latest-small)](https://grouplens.org/datasets/movielens/) | Fichier CSV | Avis / notes utilisateurs, avec correspondance vers l'id TMDB |
 | Wikipedia | Scraping | Compléments (réalisateur, durée, résumé) |
 
 ## Structure du projet
 
-```
+```text
 cinedata/
 ├── .env.example          # variables attendues (clé API), sans les valeurs réelles
 ├── .gitignore

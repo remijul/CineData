@@ -1,0 +1,41 @@
+dossiers:
+  data_brute: data/raw
+  data_transformee: data/processed
+  logs: logs
+
+tmdb:
+  base_url: https://api.themoviedb.org/3
+  language: en-US
+  nb_acteurs: 5
+  page_debut: 1
+  page_fin: 100
+  timeout: 10
+  pause_entre_requetes: 0.25
+  max_tentatives: 3
+
+movielens:
+  dossier: data/raw/ml-latest-small
+  fichiers:
+    movies: movies.csv
+    ratings: ratings.csv
+    links: links.csv
+
+wikipedia:
+  base_url: https://en.wikipedia.org/wiki
+  api_url: https://en.wikipedia.org/w/api.php
+  user_agent: "ProjetCineData-Formation/1.0 (usage pedagogique; contact: cinedata@gmail.com)"
+  timeout: 10
+  pause_entre_requetes: 1.0
+  max_tentatives: 3
+  max_candidats: 3
+  tolerance_annee: 1
+
+fichiers_sortie:
+  tmdb_full: tmdb_movies.json
+  movielens_avis: movielens_avis.json
+  wikipedia_scraping: wikipedia_misc.json
+  films_transformes: films_transformes.json
+
+database:
+  chemin: data/cinedata.db
+  schema: sql/schema.sql

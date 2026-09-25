@@ -4,29 +4,32 @@ __pycache__/
 venv/
 .venv/
 
-data/raw/*.csv
-data/raw/*.json
-data/raw/*.txt
+# Les données brutes (extractiosn de l'API TMDB, scraping Wikipedia, etc.)
+data/raw/
+#data/raw/*.csv
+#data/raw/*.json
+#data/raw/*.txt
 data/raw/ml-latest-small/
 
+# Documentation
+docs/supports_formateur/
+docs/*.py
+docs/00_Infos_API_TMDB.md
+
+# Notebooks
+#notebooks/scraping_demo.ipynb
+#notebooks/modelisation_demo.ipynb
 
 # Au fur et à mesure du projet
 # src/scraping_wikipedia.py
-src/*.py
+#src/*.py
 
 # Base de données
-sql/
+#sql/
 *.db
 
-# Notebooks
-notebooks/scraping_demo.ipynb
-notebooks/modelisation_demo.ipynb
 
-# Documentation
-docs/99_*.md
-docs/*.py
-docs/00_Infos_API_TMDB.md
-docs/00_Guide_Etudiant_04_Scraping.md
-docs/00_Guide_Etudiant_05_Modelisation.md
+
+
 
 
