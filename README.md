@@ -23,7 +23,7 @@ L'API TMDB est la source principale : les deux autres branches enrichissent uniq
 
 ## Pipeline ETL
 
-Voir [`docs/pipeline_etl.md`](docs/pipeline_etl.md) pour le détail complet (diagrammes Mermaid : vue d'ensemble, extraction TMDB en 3 phases, schéma de base de données).
+Voir [`docs/pipeline_etl.md`](docs/02_Pipeline_ETL_complet.md) pour le détail complet (diagrammes Mermaid : vue d'ensemble, extraction TMDB en 3 phases, schéma de base de données).
 
 ```
 extract_api_tmdb.py ─┐

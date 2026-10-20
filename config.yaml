@@ -51,6 +51,8 @@ recommandation:
 
 llm:
   provider: mistral
-  modele: mistral-small-latest
+  modele: ministral-8b-2512 #mistral-small-2603 #mistral-small-latest
   temperature: 0.7
   max_tokens: 400
+  max_tentatives: 3
+  pause_initiale: 2.0

@@ -1,28 +1,44 @@
-# python3 -m venv venv
-# venv\Scripts\Activate
-# pip install -r requirements.txt
-# python -m ipykernel install --user --name=cinedata --display-name "Python (cinedata)"
-
-# --- Extraction (J1-J3) ---
-requests
-python-dotenv
-beautifulsoup4
-pyyaml
-
-# --- Exploration / notebook (proche de vos habitudes Data Analyst) ---
-pandas
-jupyterlab
-
-
-# --- Base de données (J4-J5) ---
-sqlalchemy
-
-# --- API (J5-J6) ---
-fastapi
-uvicorn
-httpx
-
-# --- Système de recommandation (J6-J7) ---
-scikit-learn
-joblib
-mistralai
+﻿annotated-doc==0.0.5
+annotated-types==0.8.0
+anyio==4.15.1
+beautifulsoup4==4.15.0
+certifi==2026.10.18
+charset-normalizer==3.5.2
+click==8.5.0
+cloudpickle==3.1.2
+eval-type-backport==0.4.0
+fastapi==0.146.0
+h11==0.16.0
+httpcore2==2.14.0
+httpx2==2.14.0
+idna==3.20
+ipython-pygments-lexers==1.1.1
+joblib==1.6.0
+jsonpath-python==1.1.6
+jupyter-client==8.10.0
+jupyter-core==5.9.1
+mistralai==3.2.0
+narwhals==2.27.1
+nest-asyncio2==1.7.4
+numpy==2.5.4
+opentelemetry-api==1.45.1
+opentelemetry-semantic-conventions==0.66b1
+packaging==26.3
+pandas==3.0.6
+prompt-toolkit==3.0.53
+pydantic==2.14.1
+pydantic-core==2.50.1
+python-dotenv==1.2.4
+pyyaml==6.0.3
+requests==2.34.2
+scikit-learn==1.9.1
+scipy==1.18.1
+soupsieve==3.0.3
+starlette==1.9.0
+threadpoolctl==3.7.0
+truststore==0.10.5
+typing-extensions==4.16.0
+typing-inspection==0.4.4
+tzdata==2026.5
+urllib3==2.8.0
+uvicorn==0.54.0

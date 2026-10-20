@@ -113,3 +113,9 @@ class FilmRecommande(BaseModel):
     actors: list[str] = []
     directors: list[str] = []
     score_similarite: float
+
+class RecommandationEnrichie(BaseModel):
+    """Réponse de /enhanced_recommendation : texte du LLM + liste du moteur."""
+    film_source: str
+    argumentaire: str
+    films_recommandes: list[FilmRecommande]

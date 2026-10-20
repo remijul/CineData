@@ -20,7 +20,7 @@ TAGS_METADATA = [
     {"name": "Système", "description": "État de l'API et informations générales."},
     {"name": "Films", "description": "Liste et détail des films du catalogue."},
     {"name": "Classements", "description": "Top 10 acteurs, réalisateurs, revenus et budgets."},
-    {"name": "Recommandation", "description": "Films similaires à un film donné (similarité de contenu)."},
+    {"name": "Recommandation", "description": "Films similaires à un film donné (similarité de contenu), avec ou sans argumentaire rédigé par un LLM."},
 ]
 
 app = FastAPI(
