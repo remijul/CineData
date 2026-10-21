@@ -9,7 +9,7 @@ venv/
 
 # API
 #sql/
-api/
+#api/
 
 # Les données brutes (extractiosn de l'API TMDB, scraping Wikipedia, etc.)
 data/raw/
@@ -27,9 +27,9 @@ docs/00_Infos_API_TMDB.md
 
 # Notebooks
 #notebooks/scraping_demo.ipynb
-notebooks/demo_fastapi.ipynb
-notebooks/demo_recommandation.ipynb
-ntebooks/demo_enhanced_recommendation.ipynb
+#notebooks/demo_fastapi.ipynb
+#notebooks/demo_recommandation.ipynb
+#ntebooks/demo_enhanced_recommendation.ipynb
 
 # Au fur et à mesure du projet
 # src/scraping_wikipedia.py
