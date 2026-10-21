@@ -7,6 +7,7 @@ SELECT
     films.tagline,
     films.runtime,
     films.release_date,
+    films.poster_path,
     (
         SELECT GROUP_CONCAT(genres.nom, '|')
         FROM film_genre

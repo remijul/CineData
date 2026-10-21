@@ -65,6 +65,7 @@ class FilmDetail(BaseModel):
     vote_count: Optional[int] = None
     adult: Optional[bool] = None
     overview: Optional[str] = None
+    poster_path: Optional[str] = None
     budget: Optional[int] = None
     homepage: Optional[str] = None
     revenue: Optional[int] = None
@@ -103,16 +104,18 @@ class FilmClassementBudget(BaseModel):
 
 
 # --- Recommandation ---
- 
+
 class FilmRecommande(BaseModel):
     id: int
     title: str
     genres: list[str] = []
     runtime: Optional[int] = None
     release_date: Optional[str] = None
+    poster_path: Optional[str] = None
     actors: list[str] = []
     directors: list[str] = []
     score_similarite: float
+
 
 class RecommandationEnrichie(BaseModel):
     """Réponse de /enhanced_recommendation : texte du LLM + liste du moteur."""

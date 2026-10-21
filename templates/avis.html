@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "composants/carte_film.html" import carte_film %}
+{% block titre %}Avis sur {{ film.title }}{% endblock %}
+
+{% block contenu %}
+  <nav aria-label="Fil d'Ariane" class="fil">
+    <a href="/catalogue">Catalogue</a> &rsaquo;
+    <a href="/film/{{ film.id }}">{{ film.title }}</a> &rsaquo; <span>Avis du critique</span>
+  </nav>
+
+  <h1>L'avis du critique sur {{ film.title }}</h1>
+
+  <p class="note" role="note">
+    Ce texte est généré par une IA (modèle de langage) à partir de la liste de films ci-dessous.
+    Il peut contenir des erreurs : vérifiez-le avec les informations des fiches.
+  </p>
+
+  {% if erreur %}
+    <div class="alerte-erreur" role="alert">
+      <p><strong>L'avis n'a pas pu être généré.</strong></p>
+      <p>{{ erreur }}</p>
+      <p><a href="/film/{{ film.id }}/avis">Réessayer</a> · <a href="/film/{{ film.id }}">Retour à la fiche</a></p>
+    </div>
+  {% else %}
+    <div class="avis">{{ argumentaire }}</div>
+  {% endif %}
+
+  <section aria-labelledby="titre-fournis">
+    <h2 id="titre-fournis">Films fournis au critique</h2>
+    <p>Ces films ont été choisis par le moteur de similarité. Le critique ne fait que les commenter.</p>
+    <div class="grille">
+      {% for f in films_recommandes %}{{ carte_film(f) }}{% endfor %}
+    </div>
+  </section>
+{% endblock %}

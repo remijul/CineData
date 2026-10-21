@@ -1,0 +1,10 @@
+{# Macro « affiche » : l'image si on a une URL, sinon un visuel de remplacement #}
+{% macro affiche(url, titre) %}
+  {% if url %}
+    <img class="affiche" src="{{ url }}" alt="Affiche du film {{ titre }}" loading="lazy">
+  {% else %}
+    <div class="affiche affiche-vide" role="img" aria-label="Affiche non disponible pour {{ titre }}">
+      <span aria-hidden="true">Affiche non disponible</span>
+    </div>
+  {% endif %}
+{% endmacro %}

@@ -1,0 +1,33 @@
+{# Macro « tableau_classement » : un même tableau pour les 4 classements.
+   ligne[champ] fonctionne aussi bien sur un dictionnaire que sur un objet Pydantic. #}
+{% macro tableau_classement(lignes, champ_nom, champ_valeur, libelle_nom, libelle_valeur, est_film=False, monnaie=False) %}
+  <table>
+    <caption class="sr-only">{{ libelle_nom }} — {{ libelle_valeur }}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Rang</th>
+        <th scope="col">{{ libelle_nom }}</th>
+        <th scope="col" class="num">{{ libelle_valeur }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ligne in lignes %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>
+            {% if est_film %}
+              <a href="/film/{{ ligne.id }}">{{ ligne[champ_nom] }}</a>
+            {% else %}
+              {{ ligne[champ_nom] }}
+            {% endif %}
+          </td>
+          <td class="num">
+            {% if monnaie %}{{ ligne[champ_valeur] | dollars }}{% else %}{{ ligne[champ_valeur] }}{% endif %}
+          </td>
+        </tr>
+      {% else %}
+        <tr><td colspan="3">Aucune donnée disponible.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endmacro %}

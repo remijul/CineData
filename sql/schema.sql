@@ -1,5 +1,5 @@
 -- schema.sql
--- Schéma de la base de données CinéData (version SQLite)
+-- Schéma de la base de données CinéData (version SQLite) — Option A validée.
 -- 6 tables : films (fusion TMDB + Wikipedia + agrégats MovieLens),
 -- genres/film_genre (N-N), personnes/film_personne (N-N avec attributs
 -- role + personnage portés par la relation), film_tag (MovieLens).
@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS films (
     vote_count                INTEGER,
     adult                     INTEGER,              -- 0/1
     overview                  TEXT,
+    poster_path               TEXT,                 -- chemin relatif TMDB de l'affiche (ex. '/abc.jpg')
 
     -- Phase 2 TMDB
     budget                    INTEGER,

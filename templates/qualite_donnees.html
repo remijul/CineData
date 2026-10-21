@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block titre %}Qualité des données{% endblock %}
+
+{% block contenu %}
+  <h1>Qualité des données</h1>
+
+  <p>
+    Pour chaque champ, le nombre de films pour lesquels l'information est renseignée,
+    sur {{ nb_films }} films au total. Une valeur absente n'est pas une erreur du site :
+    elle vient de la source, qui ne couvre pas tous les films.
+  </p>
+
+  <ul class="etat">
+    <li>État de l'API : <strong>{{ etat_api }}</strong></li>
+    <li>Base mise à jour le {{ derniere_maj.strftime("%d/%m/%Y à %H:%M") }}</li>
+  </ul>
+
+  {% for groupe in couverture %}
+    <section aria-labelledby="source-{{ loop.index }}">
+      <h2 id="source-{{ loop.index }}">Source : {{ groupe.source }}</h2>
+      <table>
+        <caption class="sr-only">Couverture des champs de la source {{ groupe.source }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Champ</th>
+            <th scope="col" class="num">Films renseignés</th>
+            <th scope="col">Couverture</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ligne in groupe.lignes %}
+            <tr>
+              <td>{{ ligne.champ }}</td>
+              <td class="num">{{ ligne.nb }} / {{ nb_films }}</td>
+              <td>
+                <meter min="0" max="100" value="{{ ligne.pourcentage }}">{{ ligne.pourcentage }} %</meter>
+                {{ ligne.pourcentage }} %
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  {% endfor %}
+{% endblock %}

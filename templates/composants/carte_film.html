@@ -1,0 +1,17 @@
+{# Macro « carte_film » : une carte pour un film du moteur de recommandation.
+   Attend un dictionnaire : id, title, genres, directors, release_date, score_similarite
+   (et, plus tard, poster_path : absent aujourd'hui, donc visuel de remplacement). #}
+{% from "composants/affiche.html" import affiche %}
+
+{% macro carte_film(film) %}
+  <article class="carte">
+    {{ affiche(film.poster_path | url_affiche, film.title) }}
+    <h3><a href="/film/{{ film.id }}">{{ film.title }}</a></h3>
+    <p class="meta">
+      {{ film.release_date | annee | default("Année inconnue", true) }}
+      · {{ film.genres | join(", ") | default("Genres non renseignés", true) }}
+    </p>
+    <p class="meta">Réalisé par {{ film.directors | join(", ") | default("non renseigné", true) }}</p>
+    <p class="score">Similarité : {{ (film.score_similarite * 100) | round | int }} %</p>
+  </article>
+{% endmacro %}

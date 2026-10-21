@@ -10,11 +10,14 @@ Lancement (depuis la racine du projet, sans se déplacer dans api/) :
     uvicorn main:app --reload
 
 Documentation Swagger : http://127.0.0.1:8000/docs
+Site web              : http://127.0.0.1:8000/
 """
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
-from routers import system, movies, rankings, recommendation
+from config import RACINE_PROJET
+from routers import system, movies, rankings, recommendation, pages
 
 TAGS_METADATA = [
     {"name": "Système", "description": "État de l'API et informations générales."},
@@ -34,3 +37,7 @@ app.include_router(system.router)
 app.include_router(movies.router)
 app.include_router(rankings.router)
 app.include_router(recommendation.router)
+
+# Site web : fichiers statiques (CSS) puis pages HTML (gabarits Jinja2)
+app.mount("/static", StaticFiles(directory=RACINE_PROJET / "static"), name="static")
+app.include_router(pages.router)

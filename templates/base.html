@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titre %}Accueil{% endblock %} · CinéData</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete">
+    <p class="logo"><a href="/">CinéData</a></p>
+    {# Le chemin demandé sert à marquer la page courante dans le menu #}
+    {% set chemin = request.url.path %}
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a href="/" {% if chemin == "/" %}aria-current="page"{% endif %}>Accueil</a></li>
+        <li><a href="/catalogue" {% if chemin == "/catalogue" %}aria-current="page"{% endif %}>Catalogue</a></li>
+        <li><a href="/classements" {% if chemin == "/classements" %}aria-current="page"{% endif %}>Classements</a></li>
+        <li><a href="/qualite-donnees" {% if chemin == "/qualite-donnees" %}aria-current="page"{% endif %}>Qualité des données</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenu">
+    {% block contenu %}{% endblock %}
+  </main>
+
+  <footer class="pied">
+    <p>Projet pédagogique CinéData. Données : TMDB, MovieLens, Wikipédia.</p>
+    <p>Ce produit utilise l'API TMDB mais n'est ni soutenu ni certifié par TMDB.</p>
+  </footer>
+</body>
+</html>

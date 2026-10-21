@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% from "composants/affiche.html" import affiche %}
+{% from "composants/carte_film.html" import carte_film %}
+{% block titre %}{{ film.title }}{% endblock %}
+
+{% block contenu %}
+  <nav aria-label="Fil d'Ariane" class="fil">
+    <a href="/catalogue">Catalogue</a> &rsaquo; <span>{{ film.title }}</span>
+  </nav>
+
+  <div class="fiche">
+    <div class="fiche-affiche">
+      {# poster_path n'existe pas encore dans les données : le filtre renvoie None et le visuel de remplacement s'affiche #}
+      {{ affiche(film.poster_path | url_affiche, film.title) }}
+    </div>
+
+    <div class="fiche-texte">
+      <h1>{{ film.title }}</h1>
+      <p class="meta">
+        {{ film.release_date | annee | default("Année inconnue", true) }}
+        · {{ film.runtime | duree | default("Durée inconnue", true) }}
+      </p>
+      {% if film.genres %}
+        <ul class="badges" aria-label="Genres">
+          {% for genre in film.genres %}<li>{{ genre }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+      {% if film.tagline %}<p class="slogan">« {{ film.tagline }} »</p>{% endif %}
+      <p>{{ film.overview | default("Synopsis non renseigné.", true) }}</p>
+    </div>
+  </div>
+
+  <section aria-labelledby="titre-infos">
+    <h2 id="titre-infos">Informations</h2>
+    {# Une liste de couples (libellé, valeur) parcourue par une boucle : évite de répéter 9 fois le même bloc #}
+    {% set infos = [
+      ("Titre original", film.original_title),
+      ("Langue originale", film.original_language | upper),
+      ("Date de sortie", film.release_date | date_fr),
+      ("Statut", film.status),
+      ("Budget", film.budget | dollars),
+      ("Revenus", film.revenue | dollars),
+      ("Sociétés de production", film.societes_production),
+      ("Musique", film.musique),
+    ] %}
+    <dl class="infos">
+      {% for libelle, valeur in infos %}
+        <dt>{{ libelle }}</dt>
+        <dd>{{ valeur | default("Non renseigné", true) }}</dd>
+      {% endfor %}
+    </dl>
+  </section>
+
+  <section aria-labelledby="titre-notes">
+    <h2 id="titre-notes">Notes</h2>
+    <ul>
+      <li>
+        TMDB :
+        {% if film.vote_count %}{{ "%.1f"|format(film.vote_average) }} / 10 ({{ film.vote_count }} votes){% else %}non renseignée{% endif %}
+      </li>
+      <li>
+        MovieLens :
+        {% if film.note_moyenne_movielens %}{{ "%.1f"|format(film.note_moyenne_movielens) }} / 5 ({{ film.nombre_avis_movielens }} avis){% else %}film absent de cette source{% endif %}
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="titre-equipe">
+    <h2 id="titre-equipe">Équipe</h2>
+    <p>
+      <strong>Réalisation :</strong>
+      {{ realisateurs | map(attribute="name") | join(", ") | default("non renseignée", true) }}
+    </p>
+    {% if acteurs %}
+      <table>
+        <caption class="sr-only">Acteurs et personnages</caption>
+        <thead><tr><th scope="col">Acteur</th><th scope="col">Personnage</th></tr></thead>
+        <tbody>
+          {% for acteur in acteurs %}
+            <tr><td>{{ acteur.name }}</td><td>{{ acteur.personnage | default("—", true) }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>Casting non renseigné.</p>
+    {% endif %}
+  </section>
+
+  {% if film.tags %}
+    <section aria-labelledby="titre-tags">
+      <h2 id="titre-tags">Tags MovieLens</h2>
+      <ul class="badges">
+        {% for tag in film.tags %}<li>{{ tag }}</li>{% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if film.resume_wikipedia %}
+    <section aria-labelledby="titre-wikipedia">
+      <h2 id="titre-wikipedia">Résumé Wikipédia</h2>
+      <p>{{ film.resume_wikipedia }}</p>
+      {% if film.url_wikipedia %}
+        <p><a href="{{ film.url_wikipedia }}" target="_blank" rel="noopener noreferrer">Lire l'article complet sur Wikipédia (nouvel onglet)</a></p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  <section aria-labelledby="titre-similaires">
+    <h2 id="titre-similaires">Si vous avez aimé ce film…</h2>
+    {% if similaires %}
+      <div class="grille">
+        {% for similaire in similaires %}{{ carte_film(similaire) }}{% endfor %}
+      </div>
+    {% else %}
+      <p>Les recommandations ne sont pas disponibles pour ce film.</p>
+    {% endif %}
+  </section>
+
+  <section aria-labelledby="titre-avis">
+    <h2 id="titre-avis">L'avis du critique</h2>
+    <p>Un texte rédigé par une IA à partir des films ci-dessus. La génération peut prendre quelques secondes.</p>
+    <p><a class="bouton" href="/film/{{ film.id }}/avis">Lire l'avis du critique</a></p>
+  </section>
+{% endblock %}

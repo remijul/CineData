@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "composants/tableau_classement.html" import tableau_classement %}
+{% block titre %}Classements{% endblock %}
+
+{% block contenu %}
+  <h1>Classements</h1>
+
+  <div class="grille-classements">
+    <section aria-labelledby="t-acteurs">
+      <h2 id="t-acteurs">Acteurs les plus présents</h2>
+      {{ tableau_classement(acteurs, "name", "nombre_films", "Acteur", "Films") }}
+    </section>
+
+    <section aria-labelledby="t-realisateurs">
+      <h2 id="t-realisateurs">Réalisateurs les plus présents</h2>
+      {{ tableau_classement(realisateurs, "name", "nombre_films", "Réalisateur", "Films") }}
+    </section>
+
+    <section aria-labelledby="t-revenus">
+      <h2 id="t-revenus">Films aux plus gros revenus</h2>
+      {{ tableau_classement(revenus, "title", "revenue", "Film", "Revenus", est_film=True, monnaie=True) }}
+    </section>
+
+    <section aria-labelledby="t-budgets">
+      <h2 id="t-budgets">Films aux plus gros budgets</h2>
+      {{ tableau_classement(budgets, "title", "budget", "Film", "Budget", est_film=True, monnaie=True) }}
+    </section>
+  </div>
+{% endblock %}

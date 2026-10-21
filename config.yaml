@@ -12,6 +12,8 @@ tmdb:
   timeout: 10
   pause_entre_requetes: 0.25
   max_tentatives: 3
+  image_base_url: https://image.tmdb.org/t/p/
+  taille_affiche: w342  
 
 movielens:
   dossier: data/raw/ml-latest-small

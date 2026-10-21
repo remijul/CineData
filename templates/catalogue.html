@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% from "composants/pagination.html" import pagination %}
+{% block titre %}Catalogue{% endblock %}
+
+{% block contenu %}
+  <h1>Catalogue des films</h1>
+
+  <form action="/catalogue" method="get" role="search" class="recherche">
+    <div class="ligne">
+      <div class="champ">
+        <label for="q">Titre contient</label>
+        <input type="search" id="q" name="q" value="{{ q }}">
+      </div>
+      <div class="champ">
+        <label for="genre">Genre</label>
+        <select id="genre" name="genre">
+          <option value="">Tous les genres</option>
+          {% for g in genres %}
+            <option value="{{ g }}" {% if g == genre %}selected{% endif %}>{{ g }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit">Filtrer</button>
+    </div>
+  </form>
+
+  <p role="status">
+    {{ total }} film{{ "s" if total > 1 }} trouvé{{ "s" if total > 1 }}
+    {%- if q %} pour « {{ q }} »{% endif -%}
+    {%- if genre %} dans le genre {{ genre }}{% endif -%}
+    .
+  </p>
+
+  {% if films %}
+    <table class="catalogue">
+      <caption class="sr-only">Liste des films, page {{ page }} sur {{ total_pages }}</caption>
+      <thead>
+        <tr>
+          <th scope="col">Titre</th>
+          <th scope="col">Année</th>
+          <th scope="col">Genres</th>
+          <th scope="col" class="num">Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for film in films %}
+          <tr>
+            <td><a href="/film/{{ film.id }}">{{ film.title }}</a></td>
+            <td>{{ film.annee | default("—", true) }}</td>
+            <td>{{ film.genres | default("—", true) }}</td>
+            <td class="num">{{ film.vote_average | default("—", true) }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ pagination("/catalogue", page, total_pages, q, genre) }}
+  {% elif total %}
+    <p>Cette page n'existe pas. <a href="/catalogue?{{ {'q': q, 'genre': genre} | urlencode }}">Retour à la première page</a></p>
+  {% else %}
+    <p>Aucun film ne correspond à votre recherche. <a href="/catalogue">Réinitialiser les filtres</a></p>
+  {% endif %}
+{% endblock %}

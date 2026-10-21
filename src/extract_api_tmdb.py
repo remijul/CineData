@@ -98,6 +98,7 @@ def extraire_champs_populaire(film_brut):
         "vote_count": film_brut.get("vote_count"),
         "adult": film_brut.get("adult"),
         "overview": film_brut.get("overview"),
+        "poster_path": film_brut.get("poster_path"),
     }
 
 

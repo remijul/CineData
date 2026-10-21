@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block titre %}Accueil{% endblock %}
+
+{% block contenu %}
+  <h1>CinéData</h1>
+  <p class="intro">Explorez un catalogue de films enrichi de plusieurs sources : TMDB, MovieLens et Wikipédia.</p>
+
+  <form action="/catalogue" method="get" role="search" class="recherche">
+    <label for="q">Rechercher un film par son titre</label>
+    <div class="ligne">
+      <input type="search" id="q" name="q" placeholder="Ex. Spider-Man">
+      <button type="submit">Rechercher</button>
+    </div>
+  </form>
+
+  <section aria-labelledby="titre-chiffres">
+    <h2 id="titre-chiffres">Le catalogue en chiffres</h2>
+    <dl class="chiffres">
+      <div><dt>Films</dt><dd>{{ stats.nb_films }}</dd></div>
+      <div><dt>Personnes (acteurs, réalisateurs)</dt><dd>{{ stats.nb_personnes }}</dd></div>
+      <div><dt>Genres</dt><dd>{{ stats.nb_genres }}</dd></div>
+      <div>
+        <dt>Années de sortie</dt>
+        <dd>
+          {% if stats.annee_min and stats.annee_max %}
+            {{ stats.annee_min }} – {{ stats.annee_max }}
+          {% else %}
+            Non renseigné
+          {% endif %}
+        </dd>
+      </div>
+      <div>
+        <dt>Note moyenne TMDB</dt>
+        <dd>{% if stats.note_moyenne %}{{ stats.note_moyenne }} / 10{% else %}Non renseigné{% endif %}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="titre-top">
+    <h2 id="titre-top">Les 5 plus gros succès au box-office</h2>
+    <ol class="liste-top">
+      {% for film in top_films %}
+        <li><a href="/film/{{ film.id }}">{{ film.title }}</a> — {{ film.revenue | dollars }}</li>
+      {% else %}
+        <li>Aucune donnée de revenus disponible.</li>
+      {% endfor %}
+    </ol>
+    <p><a href="/classements">Voir tous les classements</a></p>
+  </section>
+{% endblock %}

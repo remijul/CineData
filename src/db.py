@@ -44,7 +44,7 @@ def inserer_film(connexion, film):
     """
     colonnes = [
         "id", "title", "original_title", "original_language", "release_date",
-        "popularity", "vote_average", "vote_count", "adult", "overview",
+        "popularity", "vote_average", "vote_count", "adult", "overview", "poster_path",
         "budget", "homepage", "revenue", "runtime", "status", "tagline",
         "resume_wikipedia", "url_wikipedia", "musique", "societes_production",
         "note_moyenne_movielens", "nombre_avis_movielens",

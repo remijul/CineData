@@ -1,0 +1,15 @@
+{# Macro « pagination » : liens Précédent / Suivant qui conservent la recherche en cours.
+   urlencode transforme un dictionnaire en chaîne de requête : q=spider&genre=Action&page=2 #}
+{% macro pagination(base_url, page, total_pages, q, genre) %}
+  {% if total_pages > 1 %}
+    <nav class="pagination" aria-label="Pagination">
+      {% if page > 1 %}
+        <a href="{{ base_url }}?{{ {'q': q, 'genre': genre, 'page': page - 1} | urlencode }}" rel="prev">Page précédente</a>
+      {% endif %}
+      <span>Page {{ page }} sur {{ total_pages }}</span>
+      {% if page < total_pages %}
+        <a href="{{ base_url }}?{{ {'q': q, 'genre': genre, 'page': page + 1} | urlencode }}" rel="next">Page suivante</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endmacro %}

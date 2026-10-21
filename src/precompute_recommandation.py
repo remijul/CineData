@@ -95,6 +95,7 @@ def construire_metadata(df):
             "genres": df["genres_texte"].apply(diviser_en_liste),
             "runtime": df["runtime"],
             "release_date": df["release_date"],
+            "poster_path": df["poster_path"],
             "actors": df["actors_texte"].apply(diviser_en_liste),
             "directors": df["directors_texte"].apply(diviser_en_liste),
         }
